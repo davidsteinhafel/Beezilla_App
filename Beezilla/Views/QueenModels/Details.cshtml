@@ -1,0 +1,43 @@
+﻿@model Beezilla.Models.QueenModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>QueenModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Seen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Seen)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Marked)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Marked)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QueenStart)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QueenStart)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QueenEnd)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QueenEnd)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

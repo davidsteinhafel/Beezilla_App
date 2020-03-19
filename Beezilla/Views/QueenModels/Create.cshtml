@@ -1,0 +1,49 @@
+﻿@model Beezilla.Models.QueenModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>QueenModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Seen" /> @Html.DisplayNameFor(model => model.Seen)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Marked" /> @Html.DisplayNameFor(model => model.Marked)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="QueenStart" class="control-label"></label>
+                <input asp-for="QueenStart" class="form-control" />
+                <span asp-validation-for="QueenStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QueenEnd" class="control-label"></label>
+                <input asp-for="QueenEnd" class="form-control" />
+                <span asp-validation-for="QueenEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
