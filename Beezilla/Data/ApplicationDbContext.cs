@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Beezilla.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -31,5 +32,8 @@ namespace Beezilla.Data
                 }
             );
         }
+        public DbSet<KeeperModel> Keepers { get; set; }
+        public DbSet <HiveModel> Hives { get; set; }
+        public DbSet<QueenModel> Queens { get; set; }
     }
 }

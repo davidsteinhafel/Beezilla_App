@@ -4,123 +4,22 @@ using Beezilla.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Beezilla.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200319142722_newModels")]
+    partial class newModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Beezilla.Models.HiveModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Brood")
-                        .HasColumnType("int");
-
-                    b.Property<string>("HiveImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HiveStrength")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HiveType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("KeeperModel")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Mites")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Propolis")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("QueenCells")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Size")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Species")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Supers")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SwarmPotential")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Temperament")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("KeeperModel");
-
-                    b.ToTable("Hives");
-                });
-
-            modelBuilder.Entity("Beezilla.Models.KeeperModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("HiveCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdentityUserId");
-
-                    b.ToTable("Keepers");
-                });
-
-            modelBuilder.Entity("Beezilla.Models.QueenModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Marked")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("QueenEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("QueenStart")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Seen")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Queens");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -151,15 +50,15 @@ namespace Beezilla.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a5ebcca2-ff02-4f0c-ad28-6e31a6eea020",
-                            ConcurrencyStamp = "993a6894-b2b9-4d2d-bd5f-8a542fbd1f5d",
+                            Id = "8fa6009e-9c60-47eb-9503-b6a0a6c75129",
+                            ConcurrencyStamp = "d267104e-558f-4d3e-ad09-ebfa75246047",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "eff88620-7486-47ce-a7f2-94eb253012a3",
-                            ConcurrencyStamp = "33ccf9a1-d6bc-4490-8904-88d1bd1aeae0",
+                            Id = "3d5bb179-f364-475d-81af-d625e1d1c6a0",
+                            ConcurrencyStamp = "b4fdbe8b-6f67-4d64-9b50-810bcf15ac09",
                             Name = "Keeper",
                             NormalizedName = "KEEPER"
                         });
@@ -332,20 +231,6 @@ namespace Beezilla.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Beezilla.Models.HiveModel", b =>
-                {
-                    b.HasOne("Beezilla.Models.KeeperModel", "KeeperId")
-                        .WithMany()
-                        .HasForeignKey("KeeperModel");
-                });
-
-            modelBuilder.Entity("Beezilla.Models.KeeperModel", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
