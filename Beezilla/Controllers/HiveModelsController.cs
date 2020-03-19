@@ -54,7 +54,7 @@ namespace Beezilla.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Temperament,Brood,Size,Supers,Species,Mites,HiveType,Propolis,HiveImageUrl,QueenCells,HiveStrength,SwarmPotential")] HiveModel hiveModel)
+        public async Task<IActionResult> Create([Bind("Id,Temperament,Brood,Size,Supers,Species,Mites,HiveType,Propolis,HiveImageUrl,QueenCells,HiveStrength,SwarmPotential, HiveLat, HiveLon")] HiveModel hiveModel)
         {
             if (ModelState.IsValid)
             {

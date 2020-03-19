@@ -49,6 +49,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.SwarmPotential)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HiveLat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HiveLon)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -90,6 +96,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SwarmPotential)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HiveLat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HiveLon)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

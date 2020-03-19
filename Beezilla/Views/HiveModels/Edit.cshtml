@@ -75,6 +75,17 @@
                 <span asp-validation-for="SwarmPotential" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="HiveLat" class="control-label"></label>
+                <input asp-for="HiveLat" class="form-control" />
+                <span asp-validation-for="HiveLat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HiveLon" class="control-label"></label>
+                <input asp-for="HiveLon" class="form-control" />
+                <span asp-validation-for="HiveLon" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -28,5 +29,7 @@ namespace Beezilla.Models
         public string HiveStrength { get; set; }
         //*risk to swarm; low, medium, high*
         public string SwarmPotential { get; set; }
+        public int HiveLat { get; set; }
+        public int HiveLon { get; set; }
     }
 }
