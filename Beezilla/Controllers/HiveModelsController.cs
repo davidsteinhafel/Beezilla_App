@@ -18,7 +18,8 @@ namespace Beezilla.Controllers
         {
             _context = context;
         }
-
+        public IActionResult Data() => View();
+        public IActionResult APITEST() => View();
         // GET: HiveModels
         public async Task<IActionResult> Index()
         {
