@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Delete";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Delete</h1>
@@ -12,6 +11,12 @@
     <h4>HiveModel</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NumberOfFrames)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfFrames)
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Temperament)
         </dt>
@@ -25,16 +30,16 @@
             @Html.DisplayFor(model => model.Brood)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BroodPattern)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BroodPattern)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Size)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Size)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Supers)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Supers)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Species)
@@ -95,6 +100,12 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.HiveLon)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.KeeperModel)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.KeeperModel.Id)
         </dd>
     </dl>
     

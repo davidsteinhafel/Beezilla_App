@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Edit</h1>
@@ -15,9 +14,18 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
+                <label asp-for="NumberOfFrames" class="control-label"></label>
+                <input asp-for="NumberOfFrames" class="form-control" />
+                <span asp-validation-for="NumberOfFrames" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Temperament" class="control-label"></label>
-                <input asp-for="Temperament" class="form-control" />
-                <span asp-validation-for="Temperament" class="text-danger"></span>
+                <select asp-for="Temperament" class="form-control">
+                    <option value="">Choose One</option>
+                    <option value="Aggressive">Aggressive</option>
+                    <option value="Calm">Calm</option>
+                    <option value="Indifferent">Indifferent</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Brood" class="control-label"></label>
@@ -25,14 +33,18 @@
                 <span asp-validation-for="Brood" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="BroodPattern" class="control-label"></label>
+                <select asp-for="BroodPattern" class="form-control">
+                    <option value="">Choose One</option>
+                    <option value="Spotty">Spotty</option>
+                    <option value="Solid">Solid</option>
+                    <option value="ConvexCaps">ConvexCaps</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label asp-for="Size" class="control-label"></label>
                 <input asp-for="Size" class="form-control" />
                 <span asp-validation-for="Size" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Supers" class="control-label"></label>
-                <input asp-for="Supers" class="form-control" />
-                <span asp-validation-for="Supers" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Species" class="control-label"></label>
@@ -51,8 +63,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Propolis" class="control-label"></label>
-                <input asp-for="Propolis" class="form-control" />
-                <span asp-validation-for="Propolis" class="text-danger"></span>
+                <select asp-for="Propolis" class="form-control">
+                    <option value="">Choose One</option>
+                    <option value="Lots">Lots</option>
+                    <option value="Average">Average</option>
+                    <option value="Little">Little</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="HiveImageUrl" class="control-label"></label>
@@ -84,7 +100,6 @@
                 <input asp-for="HiveLon" class="form-control" />
                 <span asp-validation-for="HiveLon" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -96,6 +111,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

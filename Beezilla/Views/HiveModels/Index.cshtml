@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
@@ -14,101 +13,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Temperament)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Brood)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Size)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Supers)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Species)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mites)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HiveType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Propolis)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HiveImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QueenCells)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HiveStrength)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SwarmPotential)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HiveLat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HiveLon)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Temperament)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brood)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Size)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Supers)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Species)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mites)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HiveType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Propolis)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HiveImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QueenCells)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HiveStrength)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SwarmPotential)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HiveLat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HiveLon)
-            </td>
+            <td>@Html.DisplayFor(modelitem => item.Id)</td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                <a asp-action="Data" asp-route-id="@item.Id">Delete</a>
-                
+                <a asp-controller="QueenModels" asp-action="Index" asp-route-id="@item.Id">Queens</a>
             </td>
         </tr>
 }

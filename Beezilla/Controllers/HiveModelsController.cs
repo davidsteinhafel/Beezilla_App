@@ -18,12 +18,12 @@ namespace Beezilla.Controllers
         {
             _context = context;
         }
-        public IActionResult Data() => View();
-        public IActionResult APITEST() => View();
+
         // GET: HiveModels
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Hives.ToListAsync());
+            var applicationDbContext = _context.Hives.Include(h => h.KeeperModel);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: HiveModels/Details/5
@@ -35,6 +35,7 @@ namespace Beezilla.Controllers
             }
 
             var hiveModel = await _context.Hives
+                .Include(h => h.KeeperModel)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (hiveModel == null)
             {
@@ -47,6 +48,7 @@ namespace Beezilla.Controllers
         // GET: HiveModels/Create
         public IActionResult Create()
         {
+            ViewData["KeeperModelId"] = new SelectList(_context.Keepers, "Id", "Id");
             return View();
         }
 
@@ -55,7 +57,7 @@ namespace Beezilla.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Temperament,Brood,Size,Supers,Species,Mites,HiveType,Propolis,HiveImageUrl,QueenCells,HiveStrength,SwarmPotential, HiveLat, HiveLon")] HiveModel hiveModel)
+        public async Task<IActionResult> Create([Bind("Id,NumberOfFrames,Temperament,Brood,BroodPattern,Size,Species,Mites,HiveType,Propolis,HiveImageUrl,QueenCells,HiveStrength,SwarmPotential,HiveLat,HiveLon,KeeperModelId")] HiveModel hiveModel)
         {
             if (ModelState.IsValid)
             {
@@ -63,6 +65,7 @@ namespace Beezilla.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["KeeperModelId"] = new SelectList(_context.Keepers, "Id", "Id", hiveModel.KeeperModelId);
             return View(hiveModel);
         }
 
@@ -79,6 +82,7 @@ namespace Beezilla.Controllers
             {
                 return NotFound();
             }
+            ViewData["KeeperModelId"] = new SelectList(_context.Keepers, "Id", "Id", hiveModel.KeeperModelId);
             return View(hiveModel);
         }
 
@@ -87,7 +91,7 @@ namespace Beezilla.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Temperament,Brood,Size,Supers,Species,Mites,HiveType,Propolis,HiveImageUrl,QueenCells,HiveStrength,SwarmPotential")] HiveModel hiveModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NumberOfFrames,Temperament,Brood,Size,Species,Mites,HiveType,Propolis,HiveImageUrl,QueenCells,HiveStrength,SwarmPotential,HiveLat,HiveLon,KeeperModelId")] HiveModel hiveModel)
         {
             if (id != hiveModel.Id)
             {
@@ -114,6 +118,7 @@ namespace Beezilla.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["KeeperModelId"] = new SelectList(_context.Keepers, "Id", "Id", hiveModel.KeeperModelId);
             return View(hiveModel);
         }
 
@@ -126,6 +131,7 @@ namespace Beezilla.Controllers
             }
 
             var hiveModel = await _context.Hives
+                .Include(h => h.KeeperModel)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (hiveModel == null)
             {

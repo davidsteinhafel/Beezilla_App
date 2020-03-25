@@ -33,7 +33,7 @@ namespace Beezilla.Data
             );
         }
         public DbSet<KeeperModel> Keepers { get; set; }
-        public DbSet <HiveModel> Hives { get; set; }
+        public DbSet<HiveModel> Hives { get; set; }
         public DbSet<QueenModel> Queens { get; set; }
     }
 }

@@ -1,8 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="btn-link" style="">
+    <a class="btn-dark" asp-controller="KeeperModels" asp-action="Index">Your Page</a>
 </div>
+    <p>Here to help beekeepers succeed in the fight against CCD (Colony Collapse Disorder)!</p>
+</div>
+

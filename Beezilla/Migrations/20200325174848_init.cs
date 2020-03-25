@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Beezilla.Data.Migrations
+namespace Beezilla.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,7 +51,7 @@ namespace Beezilla.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -73,7 +72,7 @@ namespace Beezilla.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -93,8 +92,8 @@ namespace Beezilla.Data.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -138,8 +137,8 @@ namespace Beezilla.Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -152,6 +151,96 @@ namespace Beezilla.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Keepers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    HiveCount = table.Column<int>(nullable: false),
+                    IdentityUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Keepers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Keepers_AspNetUsers_IdentityUserId",
+                        column: x => x.IdentityUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Hives",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NumberOfFrames = table.Column<int>(nullable: false),
+                    Temperament = table.Column<string>(nullable: true),
+                    Brood = table.Column<int>(nullable: false),
+                    BroodPattern = table.Column<string>(nullable: true),
+                    Size = table.Column<string>(nullable: true),
+                    Species = table.Column<string>(nullable: true),
+                    Mites = table.Column<int>(nullable: false),
+                    HiveType = table.Column<string>(nullable: true),
+                    Propolis = table.Column<string>(nullable: true),
+                    HiveImageUrl = table.Column<string>(nullable: true),
+                    QueenCells = table.Column<int>(nullable: false),
+                    HiveStrength = table.Column<string>(nullable: true),
+                    SwarmPotential = table.Column<string>(nullable: true),
+                    HiveLat = table.Column<decimal>(nullable: false),
+                    HiveLon = table.Column<decimal>(nullable: false),
+                    KeeperModelId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hives", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Hives_Keepers_KeeperModelId",
+                        column: x => x.KeeperModelId,
+                        principalTable: "Keepers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Queens",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Seen = table.Column<bool>(nullable: false),
+                    Marked = table.Column<bool>(nullable: false),
+                    Start = table.Column<DateTime>(nullable: false),
+                    End = table.Column<DateTime>(nullable: false),
+                    Job = table.Column<string>(nullable: true),
+                    HiveModelId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Queens", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Queens_Hives_HiveModelId",
+                        column: x => x.HiveModelId,
+                        principalTable: "Hives",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "c1745a3d-f3f3-4343-97b6-fedc5577be35", "e6cdffd5-47e5-4049-927f-15a645a10d85", "Admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "cfe52e63-3913-406e-b192-97d7b3f00f0a", "7cd71a72-4b90-4d02-ad9d-1f4f1789711c", "Keeper", "KEEPER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -191,6 +280,21 @@ namespace Beezilla.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Hives_KeeperModelId",
+                table: "Hives",
+                column: "KeeperModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Keepers_IdentityUserId",
+                table: "Keepers",
+                column: "IdentityUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Queens_HiveModelId",
+                table: "Queens",
+                column: "HiveModelId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,7 +315,16 @@ namespace Beezilla.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Queens");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Hives");
+
+            migrationBuilder.DropTable(
+                name: "Keepers");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

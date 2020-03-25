@@ -22,7 +22,8 @@ namespace Beezilla.Controllers
         // GET: QueenModels
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Queens.ToListAsync());
+            var applicationDbContext = _context.Queens.Include(q => q.HiveModel);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: QueenModels/Details/5
@@ -34,6 +35,7 @@ namespace Beezilla.Controllers
             }
 
             var queenModel = await _context.Queens
+                .Include(q => q.HiveModel)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (queenModel == null)
             {
@@ -46,6 +48,7 @@ namespace Beezilla.Controllers
         // GET: QueenModels/Create
         public IActionResult Create()
         {
+            ViewData["HiveModelId"] = new SelectList(_context.Hives, "Id", "Id");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace Beezilla.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Seen,Marked,QueenStart,QueenEnd")] QueenModel queenModel)
+        public async Task<IActionResult> Create([Bind("Id,Seen,Marked,Start,End,Job,HiveModelId")] QueenModel queenModel)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace Beezilla.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["HiveModelId"] = new SelectList(_context.Hives, "Id", "Id", queenModel.HiveModelId);
             return View(queenModel);
         }
 
@@ -78,6 +82,7 @@ namespace Beezilla.Controllers
             {
                 return NotFound();
             }
+            ViewData["HiveModelId"] = new SelectList(_context.Hives, "Id", "Id", queenModel.HiveModelId);
             return View(queenModel);
         }
 
@@ -86,7 +91,7 @@ namespace Beezilla.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Seen,Marked,QueenStart,QueenEnd")] QueenModel queenModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Seen,Marked,Start,End,Job,HiveModelId")] QueenModel queenModel)
         {
             if (id != queenModel.Id)
             {
@@ -113,6 +118,7 @@ namespace Beezilla.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["HiveModelId"] = new SelectList(_context.Hives, "Id", "Id", queenModel.HiveModelId);
             return View(queenModel);
         }
 
@@ -125,6 +131,7 @@ namespace Beezilla.Controllers
             }
 
             var queenModel = await _context.Queens
+                .Include(q => q.HiveModel)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (queenModel == null)
             {

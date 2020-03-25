@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Beezilla.Models;
-
+using System.Security.Claims;
 namespace Beezilla.Controllers
 {
+    //[ServiceFilter(typeof(GlobalRouting))]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -18,12 +15,29 @@ namespace Beezilla.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index()   
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return Redirect("./Identity/Account/Login");
+            }
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "AdminModels");
+            }
+            else if (User.IsInRole("Keepers"))
+            {
+                return RedirectToAction("Index", "KeeperModels");
+            }
             return View();
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult AboutUs()
         {
             return View();
         }
