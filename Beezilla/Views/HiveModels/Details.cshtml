@@ -3,12 +3,46 @@
 @{
     ViewData["Title"] = "Details";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .alert {
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+        }
 
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .closebtn:hover {
+                color: black;
+            }
+    </style>
+</head>
 <h1>Details</h1>
+<span>
+    @if (Model.SwarmPotential == "High Risk")
+    {
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Warning! </strong>This Hive runs a high risk to swarm!
+        </div>
+    }
+</span>
 
 <h2 style="background-color: Black;color: yellow; text-align: center; font-style: oblique">Here is Your Hive!</h2>
 
-<legend style="font-family: Arial Black; color: yellow; font-size: large;">Hive Location</legend>
+@*<legend style="font-family: Arial Black; color: black; font-size: large;">Hive Location</legend>*@
 
 <div id="googleMap" style="height:400px;width:100%;"></div>
 <script>
@@ -24,98 +58,94 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpYmz09ZN7UAG5dHUkUpJ1BiCBTw2TJqk&callback=myMap"></script>
 
 <footer>
-    <p style="background-color: Yellow; font-weight: bold; color:blue; text-align: center; font-style: oblique">© @DateTime.Now.ToLocalTime()</p>
+    <p style="background-color: black; font-weight: bold; color:yellow; text-align: center; font-style: oblique">© @DateTime.Now.ToLocalTime()</p>
 </footer>
 
 <div>
-    <h4>HiveModel</h4>
+    <h4><img class="card-img" src="@Model.HiveImageUrl"></h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
+        <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.NumberOfFrames)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-2">
             @Html.DisplayFor(model => model.NumberOfFrames)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.Temperament)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-2">
             @Html.DisplayFor(model => model.Temperament)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.Brood)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-2">
             @Html.DisplayFor(model => model.Brood)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.BroodPattern)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-2">
             @Html.DisplayFor(model => model.BroodPattern)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.Size)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-2">
             @Html.DisplayFor(model => model.Size)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.Species)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-2">
             @Html.DisplayFor(model => model.Species)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.Mites)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-2">
             @Html.DisplayFor(model => model.Mites)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.HiveType)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-2">
             @Html.DisplayFor(model => model.HiveType)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.Propolis)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-2">
             @Html.DisplayFor(model => model.Propolis)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.QueenCells)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-2">
             @Html.DisplayFor(model => model.QueenCells)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.HiveStrength)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-2">
             @Html.DisplayFor(model => model.HiveStrength)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-10">
             @Html.DisplayNameFor(model => model.SwarmPotential)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-2">
             @Html.DisplayFor(model => model.SwarmPotential)
         </dd>
+
+
     </dl>
 </div>
-<div class="card" style="width: 18rem;">
-    <img class="card-img" src="@Model.HiveImageUrl">
-</div>
-<body>
-    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-</body>
 @*<script async defer
-        <src="https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyAyJKiNPaH91bLlhC-QCpRglCKgdWb9od8">
-</script>*@
+            <src="https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyAyJKiNPaH91bLlhC-QCpRglCKgdWb9od8">
+    </script>*@
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+</html>
