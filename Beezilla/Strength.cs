@@ -13,7 +13,7 @@ namespace Beezilla
         static int FrameChecker(HiveModel hiveModel)
         {
 
-            int strengthValue = value;
+            
             if(hiveModel.NumberOfFrames <= 4)
             {
                 value -= 2;
@@ -55,11 +55,8 @@ namespace Beezilla
         }
         static int MiteChecker(HiveModel hiveModel)
         {
-            DateTime currentMonth = new DateTime();
-            DateTime endOfYear = new DateTime();
+            DateTime currentMonth;
             currentMonth = DateTime.Now;
-            endOfYear = DateTime.MaxValue;
-            int lastMonth = endOfYear.Month;
             int month = currentMonth.Month;
             if(month >= 10)
             {
@@ -81,10 +78,37 @@ namespace Beezilla
                 return value;
             }
         }
-        public static int StrengthCalc(HiveModel hiveModel)
+        public static string GetValueString(int value)
+        {
+            string weak = "Weak";
+            string average = "Average";
+            string strong = "Strong";
+            if(value <= 4)
+            {
+                
+                return weak;
+            }
+            else if(value > 4 && value < 7)
+            {
+                
+                return average;
+            }
+            else if(value > 6)
+            {
+                
+                return strong;
+            }
+            else
+            {
+                string error = "Sorry There Was a Problem!";
+                return error;
+            }
+        }
+        public static string StrengthCalc(HiveModel hiveModel)
         {
             int valueStrength = FrameChecker(hiveModel) + BroodPatternChecker(hiveModel) + MiteChecker(hiveModel);
-            return valueStrength;
+            var valueString = GetValueString(valueStrength);
+            return valueString;
         }
     }
 }

@@ -17,30 +17,28 @@ namespace Beezilla.Models
         public int NumberOfFrames { get; set; }
         [DisplayName("Bee's Temperament")]
         public string Temperament { get; set; }
-        [DisplayName("Estimated Total Brood")]
+        [DisplayName("Frames Covered in Brood")]
         public int Brood { get; set; }
         [DisplayName("Brood Pattern")]
         public string BroodPattern { get; set; }
-        [DisplayName("Estimated Size of Hive Population")]
+        [DisplayName("Bee Population")]
         public string Size { get; set; }
         //Size drop down list; small, med, large
         [DisplayName("Species of Bee")]
         public string Species { get; set; }
-        [DisplayName("Number of Mites From Sugar/Alchohol Test")]
+        [DisplayName("Number of Mites Test (Sugar)")]
         public int Mites { get; set; }
         [DisplayName("Where's Hive From(eg.Nuc/Wild/Ordered)")]
         public string HiveType { get; set; }
-        //drop down list; Nuc, Wild Caught, Out of State, Other etc.
         [DisplayName("Amount of Propolis")]
         public string Propolis { get; set; }
         [DisplayName("Profile Picture")]
         public string HiveImageUrl { get; set; }
         public int QueenCells { get; set; }
-        //*weak, average, strong*
-        [DisplayName("Strength of Hive")]
+        [DisplayName("Strength of Hive Assessment")]
         public string HiveStrength { get; set; }
         //*risk to swarm; low, medium, high*
-        [DisplayName("Swarming Risk")]
+        [DisplayName("Swarming Risk Assessment")]
         public string SwarmPotential { get; set; }
         [DisplayName("Latitude")]
         public decimal HiveLat { get; set; }
@@ -48,6 +46,7 @@ namespace Beezilla.Models
         public decimal HiveLon { get; set; }
         [ForeignKey("KeeperModel")]
         public int KeeperModelId { get; set; }
-        public KeeperModel KeeperModel { get; set; } 
+        public KeeperModel KeeperModel { get; set; }
+        
     }
 }

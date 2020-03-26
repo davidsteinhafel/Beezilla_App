@@ -42,19 +42,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="Size" class="control-label"></label>
-                <input asp-for="Size" class="form-control" />
-                <span asp-validation-for="Size" class="text-danger"></span>
+                <select asp-for="Size" class="form-control">
+                    <option value="">Choose One</option>
+                    <option value="High">High</option>
+                    <option value="AboveAverage">AboveAverage</option>
+                    <option value="Average">Average</option>
+                    <option value="Low">Low</option>
+                    <option value="VeryLow">VeryLow</option>
+                </select>
             </div>
-            @*<div class="form-group">
-            <label asp-for="Temperament">Choose Bee's Temperament:</label>
-            <input asp-for="Temperament" class="custom-select"/>
-            <select id="Temp">
-                <option value="Aggressive">Aggressive</option>
-                <option value="Indifferent">Indifferent</option>
-                <option value="Relaxed">Relaxed</option>
-                <option value="Lazy">Lazy</option>
-            </select>
-        </div>*@
             <div class="form-group">
                 <label asp-for="Species" class="control-label"></label>
                 <input asp-for="Species" class="form-control" />
@@ -88,16 +84,6 @@
                 <label asp-for="QueenCells" class="control-label"></label>
                 <input asp-for="QueenCells" class="form-control" />
                 <span asp-validation-for="QueenCells" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HiveStrength" class="control-label"></label>
-                <input asp-for="HiveStrength" class="form-control" />
-                <span asp-validation-for="HiveStrength" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SwarmPotential" class="control-label"></label>
-                <input asp-for="SwarmPotential" class="form-control" />
-                <span asp-validation-for="SwarmPotential" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HiveLat" class="control-label"></label>

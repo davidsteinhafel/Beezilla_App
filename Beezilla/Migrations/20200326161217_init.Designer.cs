@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Beezilla.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200325174848_init")]
+    [Migration("20200326161217_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -170,15 +170,15 @@ namespace Beezilla.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c1745a3d-f3f3-4343-97b6-fedc5577be35",
-                            ConcurrencyStamp = "e6cdffd5-47e5-4049-927f-15a645a10d85",
+                            Id = "ca4901ea-58fc-43a9-886e-def361c65fd7",
+                            ConcurrencyStamp = "405c00e0-871d-4b54-a647-d28a22ace1a0",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "cfe52e63-3913-406e-b192-97d7b3f00f0a",
-                            ConcurrencyStamp = "7cd71a72-4b90-4d02-ad9d-1f4f1789711c",
+                            Id = "2a01bf7c-bc77-45e9-b3fc-e9a6e1c72355",
+                            ConcurrencyStamp = "a2ca582a-0d41-45d1-98cf-923c130fe98b",
                             Name = "Keeper",
                             NormalizedName = "KEEPER"
                         });

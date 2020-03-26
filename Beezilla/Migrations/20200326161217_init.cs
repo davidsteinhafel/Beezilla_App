@@ -235,12 +235,12 @@ namespace Beezilla.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c1745a3d-f3f3-4343-97b6-fedc5577be35", "e6cdffd5-47e5-4049-927f-15a645a10d85", "Admin", "ADMIN" });
+                values: new object[] { "ca4901ea-58fc-43a9-886e-def361c65fd7", "405c00e0-871d-4b54-a647-d28a22ace1a0", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "cfe52e63-3913-406e-b192-97d7b3f00f0a", "7cd71a72-4b90-4d02-ad9d-1f4f1789711c", "Keeper", "KEEPER" });
+                values: new object[] { "2a01bf7c-bc77-45e9-b3fc-e9a6e1c72355", "a2ca582a-0d41-45d1-98cf-923c130fe98b", "Keeper", "KEEPER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

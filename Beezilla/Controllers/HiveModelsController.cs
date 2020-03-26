@@ -19,14 +19,14 @@ namespace Beezilla.Controllers
             _context = context;
         }
 
-        // GET: HiveModels
+        
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Hives.Include(h => h.KeeperModel);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: HiveModels/Details/5
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,22 +45,22 @@ namespace Beezilla.Controllers
             return View(hiveModel);
         }
 
-        // GET: HiveModels/Create
+        
         public IActionResult Create()
         {
             ViewData["KeeperModelId"] = new SelectList(_context.Keepers, "Id", "Id");
             return View();
         }
 
-        // POST: HiveModels/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,NumberOfFrames,Temperament,Brood,BroodPattern,Size,Species,Mites,HiveType,Propolis,HiveImageUrl,QueenCells,HiveStrength,SwarmPotential,HiveLat,HiveLon,KeeperModelId")] HiveModel hiveModel)
         {
             if (ModelState.IsValid)
             {
+                hiveModel.HiveStrength = Strength.StrengthCalc(hiveModel);
+                hiveModel.SwarmPotential = SwarmRisk.SwarmCalc(hiveModel);
                 _context.Add(hiveModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -69,7 +69,7 @@ namespace Beezilla.Controllers
             return View(hiveModel);
         }
 
-        // GET: HiveModels/Edit/5
+        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,9 +86,7 @@ namespace Beezilla.Controllers
             return View(hiveModel);
         }
 
-        // POST: HiveModels/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,NumberOfFrames,Temperament,Brood,Size,Species,Mites,HiveType,Propolis,HiveImageUrl,QueenCells,HiveStrength,SwarmPotential,HiveLat,HiveLon,KeeperModelId")] HiveModel hiveModel)
@@ -122,7 +120,7 @@ namespace Beezilla.Controllers
             return View(hiveModel);
         }
 
-        // GET: HiveModels/Delete/5
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -141,7 +139,7 @@ namespace Beezilla.Controllers
             return View(hiveModel);
         }
 
-        // POST: HiveModels/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
