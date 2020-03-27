@@ -21,10 +21,10 @@ namespace Beezilla.Models
         public DateTime Start { get; set; }
         [DisplayName("Date Queen Stopped")]
         public DateTime End { get; set; }
-        [DisplayName("How Good is This Queen?")]
+        [DisplayName("Queen Job Performance?")]
         public string Job { get; set; }
         //dropdown list? poor, good, great
-        [ForeignKey("HiveModel")]
+        [ForeignKey("Hive #")]
         public int HiveModelId { get; set; }
         public HiveModel HiveModel { get; set; }
     }

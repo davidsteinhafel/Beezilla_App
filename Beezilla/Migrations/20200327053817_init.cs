@@ -195,6 +195,10 @@ namespace Beezilla.Migrations
                     SwarmPotential = table.Column<string>(nullable: true),
                     HiveLat = table.Column<decimal>(nullable: false),
                     HiveLon = table.Column<decimal>(nullable: false),
+                    PercentOfHiveBrood = table.Column<int>(nullable: false),
+                    PercentOfHiveEmpty = table.Column<int>(nullable: false),
+                    PercentOfHiveHoney = table.Column<int>(nullable: false),
+                    PercentOfHiveUnBrood = table.Column<int>(nullable: false),
                     KeeperModelId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -235,12 +239,12 @@ namespace Beezilla.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "ca4901ea-58fc-43a9-886e-def361c65fd7", "405c00e0-871d-4b54-a647-d28a22ace1a0", "Admin", "ADMIN" });
+                values: new object[] { "0983d11d-bb68-4e5d-956a-a7959567140e", "89718428-9ef9-4419-a6bf-e660466e551c", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "2a01bf7c-bc77-45e9-b3fc-e9a6e1c72355", "a2ca582a-0d41-45d1-98cf-923c130fe98b", "Keeper", "KEEPER" });
+                values: new object[] { "810c9520-bdf6-4cb1-9036-5a2a42144882", "7568a73a-a4b1-4a56-bf0a-18ee455db02d", "Keeper", "KEEPER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

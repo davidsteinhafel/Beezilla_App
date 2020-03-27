@@ -13,6 +13,8 @@ namespace Beezilla.Models
     {
         [Key]
         public int Id { get; set; }
+        [NotMapped]
+        public string GoogleKey { get; set; }
         [DisplayName("Total Number of Frames Covered in Bees")]
         public int NumberOfFrames { get; set; }
         [DisplayName("Bee's Temperament")]
@@ -44,6 +46,16 @@ namespace Beezilla.Models
         public decimal HiveLat { get; set; }
         [DisplayName("Longitude")]
         public decimal HiveLon { get; set; }
+
+        [DisplayName("Percent of Frames are Capped Brood")]
+        public int PercentOfHiveBrood { get; set; }
+        [DisplayName("Percent of Frames are Empty")]
+        public int PercentOfHiveEmpty { get; set; }
+        [DisplayName("Percent of Frames are Honey")]
+        public int PercentOfHiveHoney { get; set; }
+        [DisplayName("Percent of Frames are Uncapped Brood")]
+        public int PercentOfHiveUnBrood { get; set; }
+
         [ForeignKey("KeeperModel")]
         public int KeeperModelId { get; set; }
         public KeeperModel KeeperModel { get; set; }

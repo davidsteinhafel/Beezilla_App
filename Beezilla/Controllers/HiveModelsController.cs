@@ -41,7 +41,7 @@ namespace Beezilla.Controllers
             {
                 return NotFound();
             }
-
+            hiveModel.GoogleKey = Keys.GoogleApi;
             return View(hiveModel);
         }
 
@@ -55,7 +55,7 @@ namespace Beezilla.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NumberOfFrames,Temperament,Brood,BroodPattern,Size,Species,Mites,HiveType,Propolis,HiveImageUrl,QueenCells,HiveStrength,SwarmPotential,HiveLat,HiveLon,KeeperModelId")] HiveModel hiveModel)
+        public async Task<IActionResult> Create([Bind("Id,NumberOfFrames,Temperament,Brood,BroodPattern,Size,Species,Mites,HiveType,Propolis,HiveImageUrl,QueenCells,HiveStrength,SwarmPotential,HiveLat,HiveLon,PercentOfHiveBrood,PercentOfHiveEmpty,PercentOfHiveHoney,PercentOfHiveUnBrood,KeeperModelId")] HiveModel hiveModel)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace Beezilla.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NumberOfFrames,Temperament,Brood,Size,Species,Mites,HiveType,Propolis,HiveImageUrl,QueenCells,HiveStrength,SwarmPotential,HiveLat,HiveLon,KeeperModelId")] HiveModel hiveModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NumberOfFrames,Temperament,Brood,Size,Species,Mites,HiveType,Propolis,HiveImageUrl,QueenCells,HiveStrength,SwarmPotential,HiveLat,HiveLon,PercentOfHiveBrood,PercentOfHiveEmpty,PercentOfHiveHoney,PercentOfHiveUnBrood,KeeperModelId")] HiveModel hiveModel)
         {
             if (id != hiveModel.Id)
             {

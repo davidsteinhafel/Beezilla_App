@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Beezilla.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200326161217_init")]
+    [Migration("20200327053817_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,6 +56,18 @@ namespace Beezilla.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("NumberOfFrames")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PercentOfHiveBrood")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PercentOfHiveEmpty")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PercentOfHiveHoney")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PercentOfHiveUnBrood")
                         .HasColumnType("int");
 
                     b.Property<string>("Propolis")
@@ -170,15 +182,15 @@ namespace Beezilla.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ca4901ea-58fc-43a9-886e-def361c65fd7",
-                            ConcurrencyStamp = "405c00e0-871d-4b54-a647-d28a22ace1a0",
+                            Id = "0983d11d-bb68-4e5d-956a-a7959567140e",
+                            ConcurrencyStamp = "89718428-9ef9-4419-a6bf-e660466e551c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "2a01bf7c-bc77-45e9-b3fc-e9a6e1c72355",
-                            ConcurrencyStamp = "a2ca582a-0d41-45d1-98cf-923c130fe98b",
+                            Id = "810c9520-bdf6-4cb1-9036-5a2a42144882",
+                            ConcurrencyStamp = "7568a73a-a4b1-4a56-bf0a-18ee455db02d",
                             Name = "Keeper",
                             NormalizedName = "KEEPER"
                         });
