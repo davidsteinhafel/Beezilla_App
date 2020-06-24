@@ -180,15 +180,15 @@ namespace Beezilla.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0983d11d-bb68-4e5d-956a-a7959567140e",
-                            ConcurrencyStamp = "89718428-9ef9-4419-a6bf-e660466e551c",
+                            Id = "3da2937e-60b4-4a66-a0f8-dc4a8bb912e9",
+                            ConcurrencyStamp = "97f1e7f8-25fe-4a84-b768-25d1cd5e0e79",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "810c9520-bdf6-4cb1-9036-5a2a42144882",
-                            ConcurrencyStamp = "7568a73a-a4b1-4a56-bf0a-18ee455db02d",
+                            Id = "36da7fb8-fdcc-45d6-ac56-9d5cdca4bb3b",
+                            ConcurrencyStamp = "782df77f-2983-4472-a30e-6a79ff1bfc6e",
                             Name = "Keeper",
                             NormalizedName = "KEEPER"
                         });

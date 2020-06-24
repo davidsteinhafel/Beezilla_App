@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Beezilla.Data;
 using Beezilla.Models;
+using System.Security.Claims;
 
 namespace Beezilla.Controllers
 {
@@ -21,10 +22,15 @@ namespace Beezilla.Controllers
         
 
         // GET: KeeperModels
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.Keepers.Include(k => k.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var keeperModel = _context.Keepers.Include(k => k.IdentityUser).Where(k => k.IdentityUserId == userId).FirstOrDefault();
+            if(keeperModel == null)
+            {
+                return RedirectToAction("Create");
+            }
+            return View(keeperModel);
         }
 
         // GET: KeeperModels/Details/5
@@ -49,7 +55,7 @@ namespace Beezilla.Controllers
         // GET: KeeperModels/Create
         public IActionResult Create()
         {
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+            //ViewData["IdentityUserId"] = new KeeperModel();
             return View();
         }
 
@@ -58,15 +64,17 @@ namespace Beezilla.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,HiveCount,IdentityUserId")] KeeperModel keeperModel)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,HiveCount")] KeeperModel keeperModel)
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                keeperModel.IdentityUserId = userId;
                 _context.Add(keeperModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", keeperModel.IdentityUserId);
+            ViewData["IdentityUserId"] = new KeeperModel();
             return View(keeperModel);
         }
 
@@ -87,9 +95,6 @@ namespace Beezilla.Controllers
             return View(keeperModel);
         }
 
-        // POST: KeeperModels/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,HiveCount,IdentityUserId")] KeeperModel keeperModel)

@@ -26,6 +26,7 @@ namespace Beezilla.Models
         //dropdown list? poor, good, great
         [ForeignKey("Hive #")]
         public int HiveModelId { get; set; }
+        [DisplayName("Hive #")]
         public HiveModel HiveModel { get; set; }
     }
 }

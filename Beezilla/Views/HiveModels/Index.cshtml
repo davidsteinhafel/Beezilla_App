@@ -4,8 +4,21 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Hives</h1>
+<style>
+    img {
+        border: 1px solid #ddd; 
+        border-radius: 4px; 
+        padding: 5px; 
+        width: 150px; 
+    }
 
+        
+        img:hover {
+            
+            box-shadow: 0 0 2px 1px rgb(255, 216, 0);
+        }
+</style>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -13,15 +26,15 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                List of hives
             </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>@Html.DisplayFor(modelitem => item.Id)</td>
             <td>
+                <img src="@Html.DisplayFor(modelitem => item.HiveImageUrl)" />
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
